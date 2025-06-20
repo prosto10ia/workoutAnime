@@ -1,0 +1,51 @@
+.selection-page {
+   padding: 24px;
+ }
+ 
+ .selection-step {
+   margin-bottom: 32px;
+   transition: opacity 0.3s;
+ }
+ 
+ .selection-step.disabled {
+   opacity: 0.4;
+   pointer-events: none;
+ }
+ 
+ .step-title {
+   margin-bottom: 16px;
+   font-size: 1.5rem;
+   color: var(--text-primary);
+ }
+ 
+ /* === Флекс-контейнер с фиксированным gap === */
+ .step-grid {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 24px;            /* ровный зазор */
+   justify-content: center;
+ }
+ 
+ /* === Мобильная версия: под 590px === */
+ @media (max-width: 590px) {
+   .step-grid {
+     /* растягиваем карточки до 90% и центрируем */
+     justify-content: center;
+   }
+   .step-grid > * {
+     flex: 0 0 90%;      /* каждая карточка — 90% ширины */
+     max-width: none;    /* отменяем десктопный max-width */
+   }
+ }
+ 
+ .card.selected {
+   border-color: var(--accent) !important;
+   box-shadow: 0 0 0 4px rgba(224,122,95,0.5) !important;
+ }
+ 
+ .next-button-wrapper {
+   margin-top: 24px;
+   padding-bottom: 40px;
+   text-align: center;
+ }
+ 

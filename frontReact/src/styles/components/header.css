@@ -1,0 +1,52 @@
+.header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+ 
+   height: 80px;
+   margin: 12px;
+   padding: 0 20px;
+ 
+   background-color: var(--header-bg);
+   border-radius: 8px;
+ }
+ 
+ /* Заголовок */
+ .header__title {
+   font-size: 2rem;
+   color: var(--text-primary);
+   margin: 0;
+ }
+ 
+ /* Кнопка-стрелка */
+ .header__arrow {
+   background: transparent;
+   border: none;
+   padding: 4px;
+   cursor: pointer;
+   transition: transform 0.2s;
+ }
+ 
+ .header__arrow:hover {
+   transform: translateY( -2px );
+ }
+ 
+ /* Сам SVG */
+ .header__arrow .header__icon {
+   width: 32px;
+   height: 32px;
+   stroke: var(--accent);
+   fill: none;
+ }
+ 
+ .header__arrow:hover .header__icon {
+   stroke: var(--accent-hover);
+ }
+ 
+ @media (max-width: 600px) {
+   .header__title {
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin: 0;
+    }
+ }

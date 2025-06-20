@@ -1,0 +1,32 @@
+.next-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 32px auto;
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.next-button:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.next-button__icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  stroke: currentColor;
+  fill: none;
+  transition: stroke 0.2s;
+}
+
+.next-button:hover .next-button__icon {
+  stroke: #ffffff;
+}

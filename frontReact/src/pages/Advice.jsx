@@ -13,6 +13,7 @@ const Advice = () => {
         <p>You need to lose weight: move more and eat less.</p>
         <button>Buy detailed PDF</button>
       </main>
+
       <Footer />
     </>
   );

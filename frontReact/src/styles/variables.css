@@ -1,0 +1,21 @@
+:root {
+   /* Фон и тексты */
+   --page-bg: #343434;
+   --text-primary: #f0f0f0;
+   --text-secondary: #cccccc;
+ 
+   /* Фоновые панели */
+   --header-bg: #3b3b3b;    /* чуть светлее page-bg */
+   --modal-bg: #373737;     /* фон модалок */
+   
+   /* Карточки */
+   --card-bg: rgba(255,255,255,0.02);
+   --card-border: rgba(255,255,255,0.12);
+   --card-hover-bg: rgba(255,255,255,0.10);
+   --card-hover-border: rgba(255,255,255,0.20);
+ 
+   /* Акцент */
+   --accent: #e07a5f;
+   --accent-hover: #d65a4c;
+ }
+ 
