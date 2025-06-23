@@ -6,8 +6,7 @@ export const genderOptions = [
  ]
  
  export const heightOptions = [
-   { id: 'short',  label: 'Ниже среднего' },
-   { id: 'medium', label: 'Средний' },
+   { id: 'medium',  label: 'Ниже среднего' },
    { id: 'tall',   label: 'Выше среднего' },
  ]
  
