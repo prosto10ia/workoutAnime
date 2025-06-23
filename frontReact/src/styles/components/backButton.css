@@ -1,0 +1,19 @@
+.back-button {
+   background: transparent;
+   border: none;
+   padding: 4px;
+   cursor: pointer;
+ }
+ 
+ .back-button__icon {
+   width: 24px;
+   height: 24px;
+   stroke: var(--text-secondary);
+   fill: none;
+   transition: stroke 0.2s;
+ }
+ 
+ .back-button:hover .back-button__icon {
+   stroke: var(--text-primary);
+ }
+ 

@@ -1,0 +1,17 @@
+.advice-page {
+   max-width: 700px;
+   margin: 0 auto;
+   padding: 24px 16px;
+   color: var(--text-primary);
+ }
+ 
+ .advice-page ul {
+   list-style: disc inside;
+ }
+ 
+ .advice-page li {
+   margin-bottom: 12px;
+   line-height: 1.5;
+   font-size: 1rem;
+ }
+ 

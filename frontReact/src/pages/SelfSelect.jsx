@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react'
+// src/pages/SelfSelect.jsx
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
 import SelectionStep from '../components/SelectionStep'
 import NextButton from '../components/NextButton'
 import {
@@ -11,131 +11,173 @@ import {
   muscleOptions
 } from '../data/selectionData'
 import '../styles/components/selection.css'
+import Footer from '../components/Footer'
 
 export default function SelfSelect() {
   const navigate = useNavigate()
 
-  // сбрасываем скролл наверх при монтировании
+  // Сброс скролла наверх при монтировании
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
-  // состояния
+  // Шаги: пол, рост, комбинированный выбор fat+muscle
   const [gender, setGender] = useState(null)
   const [height, setHeight] = useState(null)
-  const [fat, setFat]       = useState(null)
-  const [muscle, setMuscle] = useState(null)
-  const allSelected = gender && height && fat && muscle
+  const [combo, setCombo]   = useState(null)
 
-  // рефы на секции и кнопку
   const genderRef = useRef(null)
   const heightRef = useRef(null)
-  const fatRef    = useRef(null)
-  const muscleRef = useRef(null)
+  const comboRef  = useRef(null)
   const nextRef   = useRef(null)
 
-  // универсальный скролл-метод
-  const scrollTo = (ref, align = 'start') => {
+  // Хелпер для плавного скролла под шапку
+  const scrollTo = ref => {
     if (!ref.current) return
     const headerH = document.querySelector('header')?.offsetHeight || 0
-    const rect    = ref.current.getBoundingClientRect()
-    const offset  = window.pageYOffset
-    let top
-
-    if (align === 'start') {
-      top = offset + rect.top - headerH - 16
-    } else {
-      top = offset + rect.top + rect.height - window.innerHeight + 16
-    }
-    window.scrollTo({ top, behavior: 'smooth' })
+    const { top } = ref.current.getBoundingClientRect()
+    window.scrollTo({
+      top: window.pageYOffset + top - headerH - 16,
+      behavior: 'smooth'
+    })
   }
 
-  // после выбора пола — сразу скролл к росту
-  useLayoutEffect(() => {
-    if (gender) scrollTo(heightRef, 'start')
-  }, [gender])
+  // Динамические опции роста с учётом выбранного пола
+  const heightOptionsDynamic = gender
+    ? heightOptions
+        // для female доступны только medium и tall
+        .filter(h =>
+          gender === 'male'
+            ? true
+            : ['medium', 'tall'].includes(h.id)
+        )
+        .map(h => ({
+          id: h.id,
+          label: h.label,
+          src: `/cards/height/${
+            gender + h.id[0].toUpperCase() + h.id.slice(1)
+          }.png`
+        }))
+    : []
 
-  // после выбора роста — к жиру
-  useLayoutEffect(() => {
-    if (height) scrollTo(fatRef, 'start')
-  }, [height])
+  // Список допустимых fat по выбранным gender + height
+  const fatList = gender && height
+    ? fatOptions.filter(f =>
+        (!f.genders || f.genders.includes(gender)) &&
+        (!f.heights || f.heights.includes(height))
+      )
+    : []
 
-  // после выбора жира — к мышцам
-  useLayoutEffect(() => {
-    if (fat) scrollTo(muscleRef, 'start')
-  }, [fat])
+  // Все возможные комбинации {fat, muscle}
+  const combos = gender && height
+    ? fatList.flatMap(f =>
+        muscleOptions
+          .filter(m =>
+            (!m.genders || m.genders.includes(gender)) &&
+            (!m.heights || m.heights.includes(height)) &&
+            (!m.fats    || m.fats   .includes(f.id))
+          )
+          .map(m => ({ fat: f.id, muscle: m.id }))
+      )
+    : []
 
-  // после выбора мышц — скролл к кнопке, ждём рендера через RAF
-  useEffect(() => {
-   if (muscle) {
-     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-   }
- }, [muscle])
+  // Опции для третьего шага
+  const comboOptions = combos.map(({ fat, muscle }) => {
+    const id       = `${fat}_${muscle}`
+    const fatLabel = fatOptions.find(o => o.id === fat)?.label || fat
+    const musLabel = muscleOptions.find(o => o.id === muscle)?.label || muscle
+    return {
+      id,
+      label: `${fatLabel}, ${musLabel}`,
+      src: `/cards/${gender}/${height}_${fat}_${muscle}.png`
+    }
+  })
+  const selectedId = combo ? `${combo.fat}_${combo.muscle}` : null
 
-  // обработчики выбора
-  const selectGender = id => setGender(id)
-  const selectHeight = id => setHeight(id)
-  const selectFat    = id => setFat(id)
-  const selectMuscle = id => setMuscle(id)
+  // Обработчики выбора
+  const handleSelectGender = id => {
+    setGender(id)
+    setHeight(null)
+    setCombo(null)
+    setTimeout(() => scrollTo(heightRef), 0)
+  }
 
-  // переход дальше
+  const handleSelectHeight = id => {
+    setHeight(id)
+    setCombo(null)
+    setTimeout(() => scrollTo(comboRef), 0)
+  }
+
+  const handleSelectCombo = id => {
+    const [fat, muscle] = id.split('_')
+    setCombo({ fat, muscle })
+    requestAnimationFrame(() => nextRef.current && scrollTo(nextRef))
+  }
+
   const handleNext = () => {
-    navigate('/select', { state: { gender, height, fat, muscle } })
+    navigate('/select', {
+      state: {
+        gender,
+        height,
+        currFat: combo.fat,
+        currMuscle: combo.muscle
+      }
+    })
   }
 
   return (
-    <>
-      <Header title="Расскажите о себе" />
+   <div className="app-container">
+      <Header title="Расскажите о себе" showBack={false} />
 
       <main className="selection-page">
+        {/* Шаг 1: Пол */}
         <section ref={genderRef}>
           <SelectionStep
-            title="Пол"
+            title="Выбери пол:"
             options={genderOptions}
             selectedId={gender}
-            onSelect={selectGender}
+            onSelect={handleSelectGender}
             disabled={false}
           />
         </section>
 
+        {/* Шаг 2: Рост */}
         <section ref={heightRef}>
           <SelectionStep
-            title="Рост"
-            options={heightOptions}
+            title="Какой твой рост?"
+            options={heightOptionsDynamic}
             selectedId={height}
-            onSelect={selectHeight}
+            onSelect={handleSelectHeight}
             disabled={!gender}
           />
         </section>
 
-        <section ref={fatRef}>
-          <SelectionStep
-            title="Количество жира"
-            options={fatOptions}
-            selectedId={fat}
-            onSelect={selectFat}
-            disabled={!height}
-          />
+        {/* Шаг 3: Тип тела */}
+        <section ref={comboRef}>
+          {comboOptions.length === 0 ? (
+            <p className="no-targets">
+              Ждем данных выше)
+            </p>
+          ) : (
+            <SelectionStep
+              title="Выбери на кого ты больше похож:"
+              options={comboOptions}
+              selectedId={selectedId}
+              onSelect={handleSelectCombo}
+              disabled={!height}
+            />
+          )}
         </section>
 
-        <section ref={muscleRef}>
-          <SelectionStep
-            title="Количество мышц"
-            options={muscleOptions}
-            selectedId={muscle}
-            onSelect={selectMuscle}
-            disabled={!fat}
-          />
-        </section>
-
-        {allSelected && (
-          <div ref={nextRef} style={{ textAlign: 'center', marginTop: 24 }}>
+        {/* Кнопка «Дальше» */}
+        {combo && (
+          <div ref={nextRef} className="next-button-wrapper">
             <NextButton onClick={handleNext}>Дальше</NextButton>
           </div>
         )}
       </main>
 
-      <Footer />
-    </>
+      <Footer/>
+    </div>
   )
 }

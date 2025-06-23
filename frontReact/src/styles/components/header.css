@@ -1,52 +1,42 @@
 .header {
    display: flex;
    align-items: center;
-   justify-content: space-between;
- 
-   height: 80px;
-   margin: 12px;
-   padding: 0 20px;
- 
+   padding: 12px 24px;
    background-color: var(--header-bg);
-   border-radius: 8px;
+   border-bottom: 1px solid var(--card-border);
  }
  
- /* Заголовок */
+ /* Блок с заголовком и логотипом прижат вправо */
+ .header__brand {
+   display: flex;
+   align-items: center;
+   margin-left: auto;
+ }
+ 
+ /* Заголовок перед логотипом */
  .header__title {
-   font-size: 2rem;
-   color: var(--text-primary);
    margin: 0;
+   margin-right: 16px;
+   color: var(--text-primary);
+   font-size: clamp(1.25rem, 5vw, 2rem);
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   text-align: right;
  }
  
- /* Кнопка-стрелка */
- .header__arrow {
-   background: transparent;
-   border: none;
-   padding: 4px;
-   cursor: pointer;
-   transition: transform 0.2s;
+ /* Логотип */
+ .header__logo {
+   width: 40px;
+   height: 40px;
+   object-fit: contain;
  }
  
- .header__arrow:hover {
-   transform: translateY( -2px );
+ /* На очень узких экранах — уменьшаем логотип */
+ @media (max-width: 360px) {
+   .header__logo {
+     width: 32px;
+     height: 32px;
+   }
  }
  
- /* Сам SVG */
- .header__arrow .header__icon {
-   width: 32px;
-   height: 32px;
-   stroke: var(--accent);
-   fill: none;
- }
- 
- .header__arrow:hover .header__icon {
-   stroke: var(--accent-hover);
- }
- 
- @media (max-width: 600px) {
-   .header__title {
-      font-size: 1.5rem;
-      color: var(--text-primary);
-      margin: 0;
-    }
- }

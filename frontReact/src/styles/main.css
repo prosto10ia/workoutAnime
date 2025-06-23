@@ -1,5 +1,8 @@
 /* Подключи variables.css перед этим файлом в <head> или через @import, чтобы переменные работали */
-
+html, body, #root {
+   height: 100%;
+ }
+ 
 body {
    background-color: var(--page-bg);
    color: var(--text-primary);
@@ -11,3 +14,13 @@ body {
    color: var(--text-primary);
  }
  
+ .app-container {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh; /* шампунь: «всегда минимум — экран» */
+ }
+ 
+ /* 3) Главный контент растягивается */
+ .selection-page {
+   flex: 1;
+ }
