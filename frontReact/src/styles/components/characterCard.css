@@ -59,4 +59,11 @@
    border-color: var(--accent) !important;
    box-shadow: 0 0 0 4px rgba(224,122,95,0.5) !important;
  }
+ .combo-card__img {
+   filter: blur(20px);
+   transition: filter 0.3s ease-out;
+ }
+ .combo-card__img.loaded {
+   filter: none;
+ }
  
