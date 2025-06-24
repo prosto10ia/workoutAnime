@@ -1,8 +1,8 @@
 // src/data/selectionData.js
 
 export const genderOptions = [
-   { id: 'male',   label: 'Мужчина', src: '/cards/gender/male.png' },
-   { id: 'female', label: 'Женщина', src: '/cards/gender/female.png' },
+   { id: 'male',   label: 'Мужчина', src: '/cards/gender/male.webp' },
+   { id: 'female', label: 'Женщина', src: '/cards/gender/female.webp' },
  ]
  
  export const heightOptions = [

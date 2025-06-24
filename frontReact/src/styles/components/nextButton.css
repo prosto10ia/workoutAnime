@@ -1,32 +1,43 @@
 .next-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 32px auto;
-  padding: 8px 16px;
-  background: transparent;
-  border: 2px solid var(--accent);
-  border-radius: 4px;
-  color: var(--accent);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.next-button:hover {
-  background: var(--accent);
-  color: #ffffff;
-}
-
-.next-button__icon {
-  width: 24px;
-  height: 24px;
-  margin-left: 8px;
-  stroke: currentColor;
-  fill: none;
-  transition: stroke 0.2s;
-}
-
-.next-button:hover .next-button__icon {
-  stroke: #ffffff;
-}
+   display: block;
+   width: 100%;
+   max-width: 280px;
+   margin: 32px auto;
+   padding: 14px 24px;
+   background-color: var(--accent);
+   border: none;
+   border-radius: 9999px;               /* максимально круглая «pill» */
+   color: #fff;
+   font-size: 1rem;
+   font-weight: 500;
+   text-align: center;
+   cursor: pointer;
+   box-shadow: 0 4px 12px rgba(224, 122, 95, 0.3);
+   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+ }
+ 
+ .next-button:hover {
+   background-color: #d66d53;           /* чуть темнее акцента */
+   transform: translateY(-2px);
+   box-shadow: 0 6px 16px rgba(224, 122, 95, 0.4);
+ }
+ 
+ .next-button:active {
+   transform: translateY(0);
+   box-shadow: 0 2px 8px rgba(224, 122, 95, 0.2);
+ }
+ 
+ .next-button__icon {
+   width: 20px;
+   height: 20px;
+   margin-left: 8px;
+   stroke: currentColor;
+   fill: none;
+   vertical-align: middle;
+   transition: transform 0.2s;
+ }
+ 
+ .next-button:hover .next-button__icon {
+   transform: translateX(4px);          /* стрелка «уезжает» вправо */
+ }
+ 

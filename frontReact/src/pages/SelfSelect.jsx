@@ -14,55 +14,69 @@ export default function SelfSelect() {
   const navigate = useNavigate()
   const scrollTo = useScrollTo()
 
-  // сброс скролла
-  useEffect(() => window.scrollTo(0, 0), [])
-
+  // состояния шагов
   const [gender, setGender] = useState(null)
   const [height, setHeight] = useState(null)
   const [combo, setCombo]   = useState(null)
 
+  // рефы на секции
   const genderRef = useRef(null)
   const heightRef = useRef(null)
   const comboRef  = useRef(null)
   const nextRef   = useRef(null)
 
-  const gotoHeight = () => scrollTo(heightRef)
-  const gotoCombo  = () => scrollTo(comboRef)
-  const gotoNext   = () => scrollTo(nextRef)
+  // при загрузке — скролл вверх
+  useEffect(() => window.scrollTo(0, 0), [])
 
-  const handleNext = () => navigate('/select', {
-    state: { gender, height, currFat: combo.fat, currMuscle: combo.muscle }
-  })
+  // как только выбираем пол — скроллим к росту
+  useEffect(() => {
+    if (gender) scrollTo(heightRef)
+  }, [gender, scrollTo])
+
+  // как только выбираем рост — скроллим к body-type
+  useEffect(() => {
+    if (height) scrollTo(comboRef)
+  }, [height, scrollTo])
+
+  // как только выбираем combo — скроллим к кнопке
+  useEffect(() => {
+    if (combo) scrollTo(nextRef)
+  }, [combo, scrollTo])
+
+  const handleNext = () =>
+    navigate('/select', {
+      state: { gender, height, currFat: combo.fat, currMuscle: combo.muscle }
+    })
 
   return (
     <div className="app-container">
-      <Header title="Расскажите о себе" showBack={false} />
+      <Header title="Твое текущее тело" showBack={false} />
 
       <main className="selection-page">
+        {/* Шаг 1 */}
         <section ref={genderRef}>
           <GenderStep
             gender={gender}
             setGender={setGender}
-            onNextScrollRef={gotoHeight}
           />
         </section>
 
+        {/* Шаг 2 */}
         <section ref={heightRef}>
           <HeightStep
             gender={gender}
             height={height}
             setHeight={setHeight}
-            scrollToNext={gotoCombo}
           />
         </section>
 
+        {/* Шаг 3 */}
         <section ref={comboRef}>
           <BodyTypeStep
             gender={gender}
             height={height}
             combo={combo}
             setCombo={setCombo}
-            scrollToNext={gotoNext}
           />
         </section>
 

@@ -9,12 +9,22 @@ import { transitions } from '../data/transitionData'
 import { fatOptions, muscleOptions } from '../data/selectionData'
 import '../styles/components/selection.css'
 
+// Сообщение, если нет ни одной цели
+function IdealMessage() {
+  return (
+    <div className="ideal-message">
+      <h2>Вы идеальны!</h2>
+      <p>Мы не можем сделать вас лучше — каждое ваше тело уникально.</p>
+    </div>
+  )
+}
+
 export default function Selection() {
   const navigate = useNavigate()
   const { state } = useLocation()
   const { gender, height, currFat, currMuscle } = state || {}
 
-  // если кто-то зашёл напрямую
+  // если заходят напрямую — редирект
   useEffect(() => {
     window.scrollTo(0, 0)
     if (!gender || !height || !currFat || !currMuscle) {
@@ -22,17 +32,19 @@ export default function Selection() {
     }
   }, [])
 
-  // рассчитываем возможные цели
+  // строим все возможные комбинации
   const possibleFat    = transitions[gender]?.fat[currFat]    || []
   const possibleMuscle = transitions[gender]?.muscle[currMuscle] || []
-  const combos = possibleFat.flatMap(fatT =>
+  let combos = possibleFat.flatMap(fatT =>
     possibleMuscle.map(musT => ({ fat: fatT, muscle: musT }))
   )
+
+  // убираем текущий тип тела
+  combos = combos.filter(c => !(c.fat === currFat && c.muscle === currMuscle))
 
   const [selected, setSelected] = useState(null)
   const nextRef = useRef(null)
 
-  // плавный скролл к кнопке после выбора
   const handleSelect = combo => {
     setSelected(combo)
     requestAnimationFrame(() => {
@@ -53,14 +65,11 @@ export default function Selection() {
     })
   }
 
-  const getLabel = (arr, id) => {
-    const o = arr.find(x => x.id === id)
-    return o ? o.label : id
-  }
+  const getLabel = (arr, id) => arr.find(o => o.id === id)?.label || id
 
-  // переиспользуемый компонент для одной «комбо»-карточки
+  // Компонент карточки
   function ComboCard({ fat, muscle }) {
-    const filename = `${height}_${fat}_${muscle}.png`
+    const filename = `${height}_${fat}_${muscle}.webp`
     const src = `/cards/${gender}/${filename}`
     const fatLabel    = getLabel(fatOptions, fat)
     const muscleLabel = getLabel(muscleOptions, muscle)
@@ -79,13 +88,12 @@ export default function Selection() {
   }
 
   return (
-   <div className="app-container">
-      <Header title="Куда вы хотите прийти?" showBack />
+    <div className="app-container">
+      <Header title="Тело мечты" showBack />
+
       <main className="selection-page">
         {combos.length === 0 ? (
-          <p className="no-targets">
-            Вы шикарны — помочь вам мы не можем!
-          </p>
+          <IdealMessage />
         ) : (
           <div className="step-grid">
             {combos.map(c => (
@@ -94,12 +102,13 @@ export default function Selection() {
           </div>
         )}
 
-        {selected && (
+        {selected && combos.length > 0 && (
           <div className="next-button-wrapper" ref={nextRef}>
             <NextButton onClick={handleNext}>Дальше</NextButton>
           </div>
         )}
       </main>
+
       <Footer />
     </div>
   )

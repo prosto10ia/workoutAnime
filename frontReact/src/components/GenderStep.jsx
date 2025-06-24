@@ -1,11 +1,11 @@
+// src/components/GenderStep.jsx
 import React from 'react'
 import SelectionStep from './SelectionStep'
 import { genderOptions } from '../data/selectionData'
 
-export default function GenderStep({ gender, setGender, onNextScrollRef }) {
+export default function GenderStep({ gender, setGender }) {
   const handle = id => {
     setGender(id)
-    onNextScrollRef()
   }
 
   return (

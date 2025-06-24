@@ -1,19 +1,26 @@
-.back-button {
-   background: transparent;
-   border: none;
-   padding: 4px;
-   cursor: pointer;
+/* src/styles/components/backgroundWrapper.css */
+.bg-wrap {
+   position: relative;
+   min-height: 100vh;
+   background-color: var(--bg-dark);
+   /* убрали background-image */
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   overflow: hidden;
  }
  
- .back-button__icon {
-   width: 24px;
-   height: 24px;
-   stroke: var(--text-secondary);
-   fill: none;
-   transition: stroke 0.2s;
+ .bg-wrap::before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   background: rgba(0,0,0,0.4);
+   pointer-events: none;
+   z-index: 0;
  }
  
- .back-button:hover .back-button__icon {
-   stroke: var(--text-primary);
+ .bg-wrap > * {
+   position: relative;
+   z-index: 1;
  }
  
