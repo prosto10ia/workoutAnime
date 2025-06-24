@@ -1,5 +1,6 @@
 import React from 'react'
 import CharacterCard from './CharacterCard'
+
 import '../styles/components/selection.css'
 
 
@@ -20,7 +21,7 @@ export default function SelectionStep({
             key={opt.id}
             imageSrc={opt.src}
             name={opt.label}
-            description=""
+            description={opt.description}
             onClick={() => !disabled && onSelect(opt.id)}
             className={opt.id === selectedId ? 'selected' : ''}
           />

@@ -1,26 +1,37 @@
-/* src/styles/components/backgroundWrapper.css */
-.bg-wrap {
-   position: relative;
-   min-height: 100vh;
-   background-color: var(--bg-dark);
-   /* убрали background-image */
-   background-size: cover;
-   background-position: center;
-   background-repeat: no-repeat;
-   overflow: hidden;
- }
- 
- .bg-wrap::before {
-   content: '';
+.back-button {
    position: absolute;
-   inset: 0;
-   background: rgba(0,0,0,0.4);
-   pointer-events: none;
-   z-index: 0;
+   top: 50%;
+   left: 16px;
+   transform: translateY(-50%);
+   background: transparent;
+   border: none;
+   padding: 8px;
+   cursor: pointer;
+   border-radius: 50%;
+   transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+   z-index: 5; /* чтобы точно быть над фоном и логотипом */
  }
  
- .bg-wrap > * {
-   position: relative;
-   z-index: 1;
+ .back-button:hover {
+   background-color: rgba(224, 122, 95, 0.1); /* лёгкий акцентный фон */
+   transform: translateY(-50%) scale(1.1);
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .back-button:focus {
+   outline: none;
+   box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.4);
+ }
+ 
+ .back-button__icon {
+   width: 24px;
+   height: 24px;
+   stroke: var(--accent);
+   fill: none;
+   transition: stroke 0.2s;
+ }
+ 
+ .back-button:hover .back-button__icon {
+   stroke: var(--accent-active, #d66d53);
  }
  

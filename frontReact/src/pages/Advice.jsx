@@ -2,8 +2,10 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+
 import { generateAdvice } from '../data/adviceData'
-import '../styles/pages/advice.css'
+import '../styles/text.css'
+
 
 export default function Advice() {
   const navigate = useNavigate()
@@ -21,7 +23,7 @@ export default function Advice() {
   return (
    <div className="app-container">
       <Header title="Ваши базовые советы" showBack />
-      <main className="advice-page selection-page">
+      <main className="selection-page text-page">
         <ul>
           {advice.map((line, i) => (
             <li key={i}>{line}</li>

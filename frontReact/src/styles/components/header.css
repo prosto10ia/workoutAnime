@@ -1,4 +1,5 @@
 .header {
+   position: relative;    /* <— добавили */
    display: flex;
    align-items: center;
    padding: 12px 24px;
@@ -6,18 +7,15 @@
    border-bottom: 1px solid var(--card-border);
  }
  
- /* Блок с заголовком и логотипом прижат вправо */
  .header__brand {
    display: flex;
    align-items: center;
    margin-left: auto;
  }
  
- /* Заголовок перед логотипом */
  .header__title {
    margin: 0;
    margin-right: 16px;
-   color: var(--text-primary);
    font-size: clamp(1.25rem, 5vw, 2rem);
    white-space: nowrap;
    overflow: hidden;
@@ -25,18 +23,8 @@
    text-align: right;
  }
  
- /* Логотип */
  .header__logo {
    width: 40px;
    height: 40px;
    object-fit: contain;
  }
- 
- /* На очень узких экранах — уменьшаем логотип */
- @media (max-width: 360px) {
-   .header__logo {
-     width: 32px;
-     height: 32px;
-   }
- }
- 

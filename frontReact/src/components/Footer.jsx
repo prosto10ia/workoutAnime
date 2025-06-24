@@ -1,8 +1,11 @@
 import React from 'react'
+
 import '../styles/components/footer.css'
+
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  
   return (
     <footer className="footer">
       <div className="footer__links">

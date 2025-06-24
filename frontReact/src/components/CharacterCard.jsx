@@ -1,6 +1,7 @@
-// src/components/CharacterCard.jsx
 import React, { useState } from 'react'
+
 import '../styles/components/characterCard.css'
+
 
 export default function CharacterCard({
   imageSrc,

@@ -1,0 +1,45 @@
+.main.text-page,
+.text-page, .advice-page {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.text-page p,
+.text-page li,
+.text-page address,
+.advice-page li {
+   margin-bottom: 16px;
+}
+
+.text-page ul, .advice-page ul {
+  list-style: disc inside;
+  margin: 12px 0;
+  padding-left: 0;
+}
+
+.text-page address {
+  font-style: normal;
+  margin: 8px 0;
+}
+
+a {
+   color: var(--accent);
+      text-decoration: none;
+ }
+
+ @media (max-width: 720px) {
+   #bigTitle .header__title{
+     font-size: 1.5rem;
+   }
+ }
+ @media (max-width: 550px) {
+   #bigTitle .header__title{
+     font-size: 1rem;
+   }
+ }
+ @media (max-width: 430px) {
+   #bigTitle .header__title{
+     font-size: 0.8rem;
+   }
+ }

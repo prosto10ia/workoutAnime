@@ -1,6 +1,5 @@
 .card {
-   /* ширина оставляем фиксированной */
-   width: 240px;
+   width: 300px;
    margin: 12px;
    border: 1px solid var(--card-border);
    border-radius: 12px;
@@ -17,7 +16,6 @@
  }
  
  .card__image-wrapper {
-   /* портретный контейнер 2:3 */
    width: 100%;
    aspect-ratio: 2 / 3;
    background: var(--card-bg);
@@ -25,10 +23,9 @@
  }
  
  .card__image {
-   /* масштабируем картинку целиком */
    width: 100%;
    height: 100%;
-   object-fit: contain; /* сохраняем весь кадр */
+   object-fit: contain;
  }
  
  .card__body {
@@ -40,15 +37,11 @@
  }
  
  .card__name {
-   color: var(--text-primary);
-   font-size: 1.2rem;
    margin: 0 0 8px;
    text-align: center;
  }
  
  .card__description {
-   color: var(--text-secondary);
-   font-size: 0.9rem;
    text-align: center;
    margin: 0;
    line-height: 1.4;

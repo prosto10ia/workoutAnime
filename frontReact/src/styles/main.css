@@ -7,20 +7,20 @@ body {
    background-color: var(--page-bg);
    color: var(--text-primary);
    font-family: 'Inter', sans-serif;
+   font-size: 1rem;
+   line-height: 2;
  }
  
  h1, h2, h3 {
    font-family: 'Montserrat', sans-serif;
-   color: var(--text-primary);
+   font-size: 1.25rem;
  }
  
  .app-container {
    display: flex;
    flex-direction: column;
-   min-height: 100vh; /* шампунь: «всегда минимум — экран» */
+   min-height: 100vh;
  }
- 
- /* 3) Главный контент растягивается */
  .selection-page {
    flex: 1;
  }

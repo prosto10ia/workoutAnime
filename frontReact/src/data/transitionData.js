@@ -1,5 +1,3 @@
-// src/data/transitionData.js
-
 export const transitions = {
    male: {
      fat: {

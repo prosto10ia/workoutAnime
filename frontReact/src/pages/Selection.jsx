@@ -7,9 +7,8 @@ import NextButton from '../components/NextButton'
 import CharacterCard from '../components/CharacterCard'
 import { transitions } from '../data/transitionData'
 import { fatOptions, muscleOptions } from '../data/selectionData'
-import '../styles/components/selection.css'
 
-// Сообщение, если нет ни одной цели
+
 function IdealMessage() {
   return (
     <div className="ideal-message">
@@ -18,6 +17,7 @@ function IdealMessage() {
     </div>
   )
 }
+
 
 export default function Selection() {
   const navigate = useNavigate()

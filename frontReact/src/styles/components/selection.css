@@ -14,27 +14,22 @@
  
  .step-title {
    margin-bottom: 16px;
-   font-size: 1.5rem;
-   color: var(--text-primary);
  }
  
- /* === Флекс-контейнер с фиксированным gap === */
  .step-grid {
    display: flex;
    flex-wrap: wrap;
-   gap: 24px;            /* ровный зазор */
+   gap: 24px;
    justify-content: center;
  }
  
- /* === Мобильная версия: под 590px === */
  @media (max-width: 590px) {
    .step-grid {
-     /* растягиваем карточки до 90% и центрируем */
      justify-content: center;
    }
    .step-grid > * {
-     flex: 0 0 90%;      /* каждая карточка — 90% ширины */
-     max-width: none;    /* отменяем десктопный max-width */
+     flex: 0 0 90%;
+     max-width: none;
    }
  }
  

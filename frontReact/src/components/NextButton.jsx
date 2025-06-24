@@ -1,5 +1,7 @@
 import React from 'react'
+
 import '../styles/components/nextButton.css'
+
 
 export default function NextButton({ onClick, children }) {
   return (
