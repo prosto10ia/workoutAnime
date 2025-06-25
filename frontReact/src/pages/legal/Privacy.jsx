@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../../components/main/Header'
+import Footer from '../../components/main/Footer'
 
-import '../styles/text.css'
+import '../../styles/text.css'
 
 
 export default function Privacy() {

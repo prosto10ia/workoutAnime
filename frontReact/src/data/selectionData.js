@@ -1,8 +1,6 @@
-// src/data/selectionData.js
-
 export const genderOptions = [
-   { id: 'male', label: 'Мужчина', src: '/cards/gender/male.webp' },
-   { id: 'female', label: 'Женщина', src: '/cards/gender/female.webp' },
+   { id: 'male', label: 'Парень', src: '/cards/gender/male.webp' },
+   { id: 'female', label: 'Девушка', src: '/cards/gender/female.webp' },
 ]
 
 export const heightOptions = [
@@ -19,7 +17,7 @@ export const fatOptions = [
 
 // Мышцы: доступность по росту и по жирy
 export const muscleOptions = [
-   { id: 'none', label: 'слабак' },
+   { id: 'none', label: 'слабачок' },
    { id: 'medium', label: 'среднячок' },
-   { id: 'pro', label: 'качек', genders: ['male'], heights: ['medium', 'tall'], fats: ['low', 'medium'] },
+   { id: 'pro', label: 'качок', genders: ['male'], heights: ['medium', 'tall'], fats: ['low', 'medium'] },
 ]

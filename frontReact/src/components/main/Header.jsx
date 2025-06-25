@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import BackButton from './BackButton'
+import BackButton from '../buttons/BackButton'
 
-import '../styles/components/header.css'
-import logo from '../assets/logo.png'
+import '../../styles/components/main/header.css'
+import logo from '../../assets/logo.png'
 
 
 export default function Header({ title, showBack = true }) {

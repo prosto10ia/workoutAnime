@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../styles/components/nextButton.css'
+import '../../styles/components/buttons/nextButton.css'
 
 
 export default function NextButton({ onClick, children }) {

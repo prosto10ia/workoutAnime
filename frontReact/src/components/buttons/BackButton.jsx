@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import '../styles/components/backButton.css'
+import '../../styles/components/buttons/backButton.css'
 
 
 export default function BackButton() {

@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Header from '../components/Header'
-import GenderStep from '../components/GenderStep'
-import HeightStep from '../components/HeightStep'
-import BodyTypeStep from '../components/BodyTypeStep'
-import NextButton from '../components/NextButton'
+import Header from '../components/main/Header'
+import GenderStep from '../components/selects/GenderStep'
+import HeightStep from '../components/selects/HeightStep'
+import BodyTypeStep from '../components/selects/BodyTypeStep'
+import NextButton from '../components/buttons/NextButton'
 import useScrollTo from '../hooks/useScrollTo'
-import Footer from '../components/Footer'
+import Footer from '../components/main/Footer'
 
 
 export default function SelfSelect() {
