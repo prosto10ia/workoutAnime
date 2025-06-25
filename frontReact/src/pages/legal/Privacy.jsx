@@ -24,7 +24,6 @@ export default function Privacy() {
             <h2>5. Изменения политики</h2>
             <p>5.1. Мы можем обновлять Политику, публикуя новую версию на Сайте.</p>
             <h2>6. Контакты</h2>
-            <p>По вопросам конфиденциальности: <a href="mailto:info@animeworkout.example">info@animeworkout.example</a>.</p>
          </main>
          <Footer />
       </div>

@@ -24,7 +24,6 @@ export default function Terms() {
             <h2>4. Изменение условий</h2>
             <p>4.1. Мы можем обновлять Условия, публикуя новую версию на Сайте.</p>
             <h2>5. Контакты</h2>
-            <p>По вопросам Условий пишите на <a href="mailto:info@animeworkout.example">info@animeworkout.example</a>.</p>
          </main>
          <Footer />
       </div>
