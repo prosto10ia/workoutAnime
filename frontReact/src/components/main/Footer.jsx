@@ -18,7 +18,7 @@ export default function Footer() {
         <p>
           Электронная почта:&nbsp;
           <a href="mailto:animeworkout@yandex.ru">
-            animeworkout@yandex.ru
+            animeWorkout@yandex.ru
           </a>
         </p>
       </div>
